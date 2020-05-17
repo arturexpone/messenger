@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {Route} from "react-router-dom";
-import {Messenger} from "./components/messenger/Messenger";
+import Messenger from "./components/messenger/Messenger";
 import Login from "./components/login/Login";
 
 function App() {
