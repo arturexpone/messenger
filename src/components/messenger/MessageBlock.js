@@ -3,8 +3,8 @@ import {connect} from "react-redux";
 
 const MessageBlock = (props) => {
     return (
-        <div>
-
+        <div className='block-message'>
+            Message block
         </div>
     )
 }

@@ -4,6 +4,7 @@ const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 const mongoose = require('./mongo/mongodb');
 const Rooms = mongoose.Rooms();
+const AllUsersName = mongoose.AllUsers();
 
 mongoose.connect();
 
@@ -20,39 +21,24 @@ io.on('connection', socket => {
                 }
                 return [];
             });
+    });
 
+    socket.on('get rooms', data => {
+        Rooms.find()
+            .then(rooms => {
+                return io.emit('sent all rooms', rooms);
+                    })
+            });
 
-        // console.log(data)
-        // Rooms.create({roomId: data}).then(rooms => {
-        //     console.log('создал новую руму в базе')
-        //
-        // })
-
-    })
-
-
-    // socket.on('send message', data => {
-    //
-    //     Users.create({
-    //         roomId: data.roomId,
-    //         userName: data.userName,
-    //         message: data.message,
-    //     }) .then(user => {
-    //         console.log(user)
-    //         io.emit('up message', user);
-    //     })
-    //         .catch(err => console.log(err))
-    //
-    // })
-
-    // socket.on('get message', () => {
-    //     Users.find()
-    //         .then(messages => socket.emit('set messages', messages));
-    // })
+    socket.on('get all user name', data => {
+        AllUsersName.find().then(users => {
+            socket.emit('set users name', users.map(u => u.userName));
+        })
+    });
 
     socket.on('disconnect', () => {
         console.log('User disconnected')
-    })
+    });
 });
 
 

@@ -1,0 +1,18 @@
+.block-messenger {
+    display: flex;
+    justify-content: center;
+}
+
+.block-message {
+    width: 300px;
+    margin: 10px;
+    height: 150px;
+    border: 1px solid red;
+}
+
+.block-info {
+    width: 300px;
+    height: 150px;
+    margin: 10px;
+    border: 1px solid red;
+}

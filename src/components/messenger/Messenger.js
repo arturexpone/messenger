@@ -16,8 +16,7 @@ const Messenger = (props) => {
     })
 
     return (
-        <div>
-            {rooms}
+        <div className='block-messenger'>
             <InfoBlock />
             <MessageBlock />
         </div>

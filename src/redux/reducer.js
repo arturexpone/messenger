@@ -10,11 +10,6 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case Constance.SET_ROOMS:
-            return {
-                ...state,
-                rooms: [...state.rooms, action.rooms]
-            }
         case Constance.INIT_ROOM_ID:
             return {
                 ...state,
@@ -24,6 +19,11 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 login: {...state.login, userName: action.name}
+            }
+        case Constance.INIT_ALL_ROOMS:
+            return {
+                ...state,
+                rooms: action.rooms
             }
         default:
             return state;

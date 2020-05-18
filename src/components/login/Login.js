@@ -1,13 +1,27 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
-import {Field, reduxForm} from "redux-form";
-import {API} from "../../api/setRoom";
+import {API} from "../../api/api";
 import {NavLink} from "react-router-dom";
 import {initRoomId, initUserName} from "../../redux/ac";
+import {socket} from "../../api/socket";
 
 
 const Login = (props) => {
+
     const {initRoomId, roomId, initUserName, userName} = props;
+
+    let userNames = [];
+
+    useEffect(() => {
+       API.getAllUserName();
+       socket.on('set users name', names => {
+           userNames = [...names];
+           if (userNames.includes(userName)) {
+              alert('Такой ник уже есть, Вася!')
+       }});
+    });
+
+
     return (
         <div>
             <h1>Login</h1>
