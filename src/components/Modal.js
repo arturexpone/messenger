@@ -9,21 +9,22 @@ export const Modal = (props) => {
             <button onClick={() => setIsOpen(true)}>Создать новую комнату</button>
             { isOpen &&
                 <div className='modal-overlay'>
-                    {/*<div className='modal-window'>*/}
 
-
+                    <div className='modal-block'>
                         <div className='modal-header'>
                             <input type="text" value='Введите название комнаты'/>
-                            <div onClick={() => setIsOpen(false)}>X (close)</div>
+                            <div onClick={() => setIsOpen(false)}>
+                                <button>X</button>
+                            </div>
                         </div>
 
                         <div className='modal-footer'>
                             <button onClick={() => {}}>Создать комнату</button>
                         </div>
+                    </div>
+                </div>
 
-
-                {/*</div>*/}
-            </div>}
+            }
 
         </>
     )

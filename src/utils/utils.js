@@ -15,7 +15,7 @@ export const mapUsersAndMessagesInRoom = (array, roomId = null, refOnClick = nul
 export const filterAllRoomsAndUsers = (array, toggle = 'rooms') => {
     const rooms = toggle === 'rooms' ? array.map(r => r.roomId) : array.map(r => r.userName);
 
-    let arrOfStr = rooms.filter(r => +r !== +r).sort();
+    let arrOfStr = rooms.filter(r => +r !== +r && r !== ' ').sort();
     let arrOfNum = rooms.filter(r => +r === +r).sort((prev, next) => prev - next);
 
     let lengthArray = arrOfStr.length > arrOfNum.length ? arrOfStr.length : arrOfNum.length;
@@ -46,5 +46,8 @@ export const utils = (array, roomId, toggle) => {
 }
 
 export const renderMessageInRoom = (array) => {
-    return array.map(el => el.message);
+    const spliceStrArray = array.filter(el => el.message != ' ');
+    return spliceStrArray.map(el => (
+        <div>{el.message}</div>
+    ));
 }
