@@ -7,9 +7,10 @@ const UsersBlock = (props) => {
     const {data, isFetch} = props;
 
     const valueOfprops = data.length > 0;
+    const roomId = localStorage.getItem('roomId');
 
     const AllUsersInRoom = valueOfprops
-        ? utils(data, localStorage.getItem('roomId'))
+        ? utils(data, roomId)
         : [];
 
 

@@ -6,20 +6,22 @@ import {connect} from "react-redux";
 import {socket} from "../../api/socket";
 import {API} from "../../api/api";
 import UsersBlock from "./UsersBlock";
-import {Loader} from "../Loader";
+import {Redirect} from "react-router-dom";
+import {Modal} from "../Modal";
 
 const Messenger = (props) => {
 
-    const {data, setData, toggleIsFetch, isFetch} = props;
+    const {data, setData, toggleIsFetch} = props;
     const userName = localStorage.getItem('userName');
     const roomId = localStorage.getItem('roomId');
 
 
     useEffect(() => {
-        if (data.length === 0) {
+        if (data.length === 0 && userName && roomId) {
             API.login(userName, roomId);
             toggleIsFetch(true);
         }
+
         socket.on('set all data', data => {
             setData(data);
             toggleIsFetch(false);
@@ -27,8 +29,10 @@ const Messenger = (props) => {
     })
 
     console.log('RENDER: Messenger')
+
     return (
         <div className='block-messenger'>
+            {!userName ? <Redirect to='/' /> : ''}
             <InfoBlock />
             <MessageBlock />
             <UsersBlock />

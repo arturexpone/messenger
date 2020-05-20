@@ -4,9 +4,12 @@ import {initRoomId, toggleIsFetch} from "../../redux/ac";
 import {filterAllRoomsAndUsers, mapUsersAndMessagesInRoom, utils} from "../../utils/utils";
 import {API} from "../../api/api";
 import {Loader} from "../Loader";
+import {Modal} from "../Modal";
 
 const InfoBlock = (props) => {
     const {data, toggleIsFetch} = props;
+
+    const userName = localStorage.getItem('userName');
 
     const valueOfprops = data.length > 0;
 
@@ -26,13 +29,20 @@ const InfoBlock = (props) => {
     return (
         <div className='block-info'>
             Info block
-            <div className='block-info__user-name'>
-                <span>User name: {''}</span>
-                <br/>
+            {/*<div className='block-info__user-name'>*/}
+
+                <div>
+                    <span>User name: {userName}</span>
+                </div>
+
+
                 <div className='block-info__ul-all-rooms'>
                     {data.length <= 0 ? <Loader /> : readyMountAllRooms}
                 </div>
-            </div>
+
+
+                <Modal/>
+            {/*</div>*/}
         </div>
     )
 }
