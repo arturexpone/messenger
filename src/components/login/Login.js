@@ -1,32 +1,22 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {connect} from "react-redux";
-import {API} from "../../api/api";
 import {NavLink} from "react-router-dom";
 import {initRoomId, initUserName} from "../../redux/ac";
-import {socket} from "../../api/socket";
+import {API} from "../../api/api";
 
 
 const Login = (props) => {
-
     const {initRoomId, roomId, initUserName, userName} = props;
 
-    let userNames = [];
-
-    useEffect(() => {
-       API.getAllUserName();
-       socket.on('set users name', names => {
-           userNames = [...names];
-           if (userNames.includes(userName)) {
-              alert('Такой ник уже есть, Вася!')
-       }});
-    });
-
+    const setUserAndRoom = () => {
+        API.login(userName, roomId)
+        localStorage.setItem('userName', userName);
+        localStorage.setItem('roomId', roomId);
+    }
 
     return (
         <div>
             <h1>Login</h1>
-            <form onSubmit={props.handleSubmit}>
-
                 <div>
                     <input name='roomId'
                            type='text'
@@ -47,11 +37,10 @@ const Login = (props) => {
 
                 <div>
                     <NavLink to='/messenger'>
-                        <button onClick={() => API.setRoom(roomId)}>Send data</button>
+                        <button onClick={setUserAndRoom}>Send data</button>
                     </NavLink>
                 </div>
 
-            </form>
         </div>
     )
 }

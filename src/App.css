@@ -4,15 +4,47 @@
 }
 
 .block-message {
-    width: 300px;
+    width: 600px;
+    padding: 10px;
     margin: 10px;
-    height: 150px;
+    height: 650px;
     border: 1px solid red;
 }
 
 .block-info {
-    width: 300px;
-    height: 150px;
+    width: 600px;
+    padding: 10px;
+    height: 650px;
     margin: 10px;
     border: 1px solid red;
+}
+
+.block-info__user-name {
+    display: flex;
+    justify-content: space-between;
+}
+
+.block-info__ul-names-in-room {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px;
+    height: 250px;
+    overflow: auto;
+    border: 1px solid red;
+}
+
+.block-info__ul-all-rooms {
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    width: 350px;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid teal;
+    overflow: auto;
+}
+
+.block-info__ul-all-rooms .active {
+    color: red;
 }

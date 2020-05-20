@@ -1,20 +1,28 @@
 import React, {useEffect} from "react";
 import InfoBlock from "./InfoBlock";
 import MessageBlock from "./MessageBlock";
-import {socket} from "../../api/socket";
+import {setData} from "../../redux/ac";
 import {connect} from "react-redux";
-import {setRooms} from "../../redux/ac";
+import {socket} from "../../api/socket";
+import {API} from "../../api/api";
 
 const Messenger = (props) => {
-    const {setRooms, rooms} = props;
+
+    const {data, setData} = props;
+    const userName = localStorage.getItem('userName');
+    const roomId = localStorage.getItem('roomId');
+
 
     useEffect(() => {
-        socket.on('get room', data => {
-            console.log('пытаюсь получить руму')
-            setRooms(data);
+        if (data.length === 0) {
+            API.login(userName, roomId);
+        }
+        socket.on('set all data', data => {
+            setData(data)
         })
     })
 
+    console.log('RENDER: Messenger')
     return (
         <div className='block-messenger'>
             <InfoBlock />
@@ -24,7 +32,7 @@ const Messenger = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-    rooms: state.data.rooms
-});
+    data: state.data.data
+})
 
-export default connect(mapStateToProps, {setRooms})(Messenger)
+export default connect(mapStateToProps, {setData})(Messenger)

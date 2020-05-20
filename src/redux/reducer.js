@@ -1,11 +1,13 @@
 import {Constance} from "./constance";
 
 const initialState = {
+    data: [],
     login: {
         roomId: '',
         userName: ''
     },
-    rooms: [],
+    newMessage: ''
+
 };
 
 export const reducer = (state = initialState, action) => {
@@ -20,10 +22,15 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 login: {...state.login, userName: action.name}
             }
-        case Constance.INIT_ALL_ROOMS:
+        case Constance.SET_DATA:
             return {
                 ...state,
-                rooms: action.rooms
+                data: action.data
+            }
+        case Constance.SET_NEW_MESSAGE:
+            return {
+                ...state,
+                newMessage: action.message
             }
         default:
             return state;

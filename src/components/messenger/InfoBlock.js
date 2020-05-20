@@ -1,43 +1,70 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {connect} from "react-redux";
-import {socket} from '../../api/socket'
-import {initAllRooms, setRooms} from "../../redux/ac";
+import {initRoomId} from "../../redux/ac";
+import {filterAllRoomsAndUsers, mapUsersAndMessagesInRoom, utils} from "../../utils/utils";
 import {API} from "../../api/api";
 
 const InfoBlock = (props) => {
+    const {data} = props;
 
-    const {rooms, initAllRooms, activeRoom} = props;
-    const userName = localStorage.getItem('userName');
-    let allRooms = [];
+    const valueOfprops = data.length > 0;
 
-    useEffect( () => {
+    const AllUsersInRoom = valueOfprops
+        ? utils(data, localStorage.getItem('roomId'))
+        : [];
 
-        API.getAllRooms();
 
-        if (rooms.length === 0) {
-            socket.on('sent all rooms', data => {
-                allRooms = data.map((r, i) => <option key={i} selected={r.roomId === activeRoom} value={r.roomId}>{r.roomId}</option>)
-                initAllRooms(allRooms)
-            })
-        }
-    });
+    const allRooms = valueOfprops
+        ? filterAllRoomsAndUsers(data)
+        : [];
+
+
+    const changeRoom = (roomId) => {
+        localStorage.setItem('roomId', roomId);
+        API.setRoom(roomId);
+    }
+
+    const readyMountAllUsersInRoom = mapUsersAndMessagesInRoom(AllUsersInRoom);
+    const readyMountAllRooms = mapUsersAndMessagesInRoom(allRooms, localStorage.getItem('roomId'), changeRoom);
 
     return (
         <div className='block-info'>
             Info block
-            <br/>
-            <span>User name: {userName}</span>
-            <br/>
-            <select name="Open rooms" id="" defaultValue='445'>
-                {rooms}
-            </select>
+            <div className='block-info__user-name'>
+                <span>User name: {''}</span>
+                <br/>
+
+                <div className='block-info__ul-all-rooms'>
+                    {readyMountAllRooms}
+                </div>
+
+                <br/>
+
+                <div className='block-info__ul-names-in-room'>
+
+                    <div>
+                        Users who participated in the conversation:
+                    </div>
+                    <div className='block-info__ul-names-in-room'>
+                        {readyMountAllUsersInRoom}
+                    </div>
+
+                </div>
+
+                <div>
+                </div>
+
+            </div>
+
+
         </div>
     )
 }
 
-const mapStateToProps = (state) => ({
-    rooms: state.data.rooms,
-    activeRoom: state.data.login.roomId
-});
+const mapStateToProps = (state) => {
+    return {
+        data: state.data.data
+    }
+};
 
-export default connect(mapStateToProps, {setRooms, initAllRooms})(InfoBlock)
+export default connect(mapStateToProps, {initRoomId})(InfoBlock)
