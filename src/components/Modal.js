@@ -7,7 +7,7 @@ export const Modal = (props) => {
     return (
         <>
             <button onClick={() => setIsOpen(true)}>Создать новую комнату</button>
-            { isOpen &&
+            {isOpen &&
                 <div className='modal-overlay'>
 
                     <div className='modal-block'>
@@ -23,7 +23,6 @@ export const Modal = (props) => {
                         </div>
                     </div>
                 </div>
-
             }
 
         </>

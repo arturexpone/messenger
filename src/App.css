@@ -74,3 +74,56 @@
     flex-direction: column;
 
 }
+
+.block-message__block {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid goldenrod;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    width: max-content;
+    white-space: pre-wrap;
+    height: content-box;
+}
+
+.block-message__user-name {
+    display: flex;
+    align-content: stretch;
+    padding: 5px;
+    color: gray;
+    font-weight: bold;
+}
+
+.block-message__message {
+    max-width: 380px;
+    padding: 15px;
+    word-break: break-all;
+}
+
+.messages-block-real {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 10px;
+    width: 700px;
+    height: 650px;
+    overflow: scroll;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.mount-messages {
+    display: flex;
+    flex-direction: column;
+}
+
+.block-message__block {
+    display: flex;
+    justify-items: right;
+
+}
+
+.block-message__block.my-message {
+    display: flex;
+    align-self: flex-end;
+}

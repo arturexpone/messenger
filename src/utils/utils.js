@@ -45,9 +45,19 @@ export const utils = (array, roomId, toggle) => {
         : filterAllRoomsAndUsers(objUsersInRoom, 'users')
 }
 
-export const renderMessageInRoom = (array) => {
+export const renderMessageInRoom = (array, userName) => {
     const spliceStrArray = array.filter(el => el.message != ' ');
     return spliceStrArray.map(el => (
-        <div>{el.message}</div>
+        <div className={el.userName === userName ? 'block-message__block my-message' : 'block-message__block'}>
+            <div>
+                <div className='block-message__user-name'>
+                    <span>{el.userName}</span>
+                </div>
+
+                <div>
+                    <p className='block-message__message'>{el.message}</p>
+                </div>
+            </div>
+        </div>
     ));
 }

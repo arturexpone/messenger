@@ -12,7 +12,7 @@ const MessageBlock = (props) => {
     const userName = localStorage.getItem('userName');
 
     const messagesInRoom = utils(data, roomId, 'messageInRoom');
-    const readyMessageDidMount = renderMessageInRoom(messagesInRoom);
+    const readyMessageDidMount = renderMessageInRoom(messagesInRoom, userName);
 
     const messageSend = () => {
         if (newMessage) {
@@ -26,8 +26,8 @@ const MessageBlock = (props) => {
     }
 
     return (
-        <div className='block-message'>
-            <div>
+        <div className='messages-block-real'>
+            <div className='mount-messages'>
                 Message block
                 {isFetch ? <Loader /> : readyMessageDidMount}
             </div>
