@@ -3,17 +3,11 @@ import {connect} from "react-redux";
 import {initRoomId, toggleIsFetch} from "../../redux/ac";
 import {filterAllRoomsAndUsers, mapUsersAndMessagesInRoom, utils} from "../../utils/utils";
 import {API} from "../../api/api";
-import {Loader} from "../Loader";
 
 const InfoBlock = (props) => {
-    const {data, isFetch, toggleIsFetch} = props;
+    const {data, toggleIsFetch} = props;
 
     const valueOfprops = data.length > 0;
-
-    const AllUsersInRoom = valueOfprops
-        ? utils(data, localStorage.getItem('roomId'))
-        : [];
-
 
     const allRooms = valueOfprops
         ? filterAllRoomsAndUsers(data)
@@ -26,7 +20,6 @@ const InfoBlock = (props) => {
         API.setRoom(roomId);
     }
 
-    const readyMountAllUsersInRoom = mapUsersAndMessagesInRoom(AllUsersInRoom);
     const readyMountAllRooms = mapUsersAndMessagesInRoom(allRooms, localStorage.getItem('roomId'), changeRoom);
 
     return (
@@ -35,30 +28,10 @@ const InfoBlock = (props) => {
             <div className='block-info__user-name'>
                 <span>User name: {''}</span>
                 <br/>
-
                 <div className='block-info__ul-all-rooms'>
                     {readyMountAllRooms}
                 </div>
-
-                <br/>
-
-                <div className='block-info__ul-names-in-room'>
-
-                    <div>
-                        Users who participated in the conversation:
-                    </div>
-                    <div className='block-info__ul-names-in-room'>
-                        {isFetch ? <Loader/> : readyMountAllUsersInRoom}
-                    </div>
-
-                </div>
-
-                <div>
-                </div>
-
             </div>
-
-
         </div>
     )
 }

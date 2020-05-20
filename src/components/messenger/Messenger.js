@@ -5,11 +5,11 @@ import {setData, toggleIsFetch} from "../../redux/ac";
 import {connect} from "react-redux";
 import {socket} from "../../api/socket";
 import {API} from "../../api/api";
-import {Loader} from "../Loader";
+import UsersBlock from "./UsersBlock";
 
 const Messenger = (props) => {
 
-    const {data, setData, isFetch, toggleIsFetch} = props;
+    const {data, setData, toggleIsFetch} = props;
     const userName = localStorage.getItem('userName');
     const roomId = localStorage.getItem('roomId');
 
@@ -26,20 +26,17 @@ const Messenger = (props) => {
     })
 
     console.log('RENDER: Messenger')
-    // if (isFetch) {
-    //     return <Loader />
-    // }
     return (
         <div className='block-messenger'>
             <InfoBlock />
             <MessageBlock />
+            <UsersBlock />
         </div>
     )
 }
 
 const mapStateToProps = (state) => ({
-    data: state.data.data,
-    isFetch: state.data.isFetch
+    data: state.data.data
 })
 
 export default connect(mapStateToProps, {setData, toggleIsFetch})(Messenger)
