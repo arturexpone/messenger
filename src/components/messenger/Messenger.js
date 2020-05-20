@@ -26,9 +26,9 @@ const Messenger = (props) => {
     })
 
     console.log('RENDER: Messenger')
-    if (isFetch) {
-        return <Loader />
-    }
+    // if (isFetch) {
+    //     return <Loader />
+    // }
     return (
         <div className='block-messenger'>
             <InfoBlock />

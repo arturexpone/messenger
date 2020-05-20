@@ -3,10 +3,11 @@ import {connect} from "react-redux";
 import {renderMessageInRoom, utils} from "../../utils/utils";
 import {API} from "../../api/api";
 import {setNewMessage} from "../../redux/ac";
+import {Loader} from "../Loader";
 
 const MessageBlock = (props) => {
 
-    const {data, setNewMessage, newMessage} = props;
+    const {data, setNewMessage, newMessage, isFetch} = props;
     const roomId = localStorage.getItem('roomId');
     const userName = localStorage.getItem('userName');
 
@@ -27,7 +28,7 @@ const MessageBlock = (props) => {
         <div className='block-message'>
             <div>
                 Message block
-                {readyMessageDidMount}
+                {isFetch ? <Loader /> : readyMessageDidMount}
             </div>
             
             <div>
@@ -49,7 +50,8 @@ const MessageBlock = (props) => {
 const mapStateToProps = (state) => {
     return {
         data: state.data.data,
-        newMessage: state.data.newMessage
+        newMessage: state.data.newMessage,
+        isFetch: state.data.isFetch
     }
 };
 

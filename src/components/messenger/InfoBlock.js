@@ -6,7 +6,7 @@ import {API} from "../../api/api";
 import {Loader} from "../Loader";
 
 const InfoBlock = (props) => {
-    const {data, isFetch, toggleIsFetch, getRoomThunk} = props;
+    const {data, isFetch, toggleIsFetch} = props;
 
     const valueOfprops = data.length > 0;
 
@@ -29,10 +29,6 @@ const InfoBlock = (props) => {
     const readyMountAllUsersInRoom = mapUsersAndMessagesInRoom(AllUsersInRoom);
     const readyMountAllRooms = mapUsersAndMessagesInRoom(allRooms, localStorage.getItem('roomId'), changeRoom);
 
-    if (isFetch) {
-        return <Loader />
-    }
-
     return (
         <div className='block-info'>
             Info block
@@ -52,7 +48,7 @@ const InfoBlock = (props) => {
                         Users who participated in the conversation:
                     </div>
                     <div className='block-info__ul-names-in-room'>
-                        {readyMountAllUsersInRoom}
+                        {isFetch ? <Loader/> : readyMountAllUsersInRoom}
                     </div>
 
                 </div>
