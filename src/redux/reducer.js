@@ -6,7 +6,8 @@ const initialState = {
         roomId: '',
         userName: ''
     },
-    newMessage: ''
+    newMessage: '',
+    isFetch: false,
 
 };
 
@@ -31,6 +32,11 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 newMessage: action.message
+            }
+        case Constance.SET_IS_FETCH:
+            return {
+                ...state,
+                isFetch: action.value
             }
         default:
             return state;

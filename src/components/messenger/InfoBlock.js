@@ -1,11 +1,12 @@
 import React from "react";
 import {connect} from "react-redux";
-import {initRoomId} from "../../redux/ac";
+import {initRoomId, toggleIsFetch} from "../../redux/ac";
 import {filterAllRoomsAndUsers, mapUsersAndMessagesInRoom, utils} from "../../utils/utils";
 import {API} from "../../api/api";
+import {Loader} from "../Loader";
 
 const InfoBlock = (props) => {
-    const {data} = props;
+    const {data, isFetch, toggleIsFetch, getRoomThunk} = props;
 
     const valueOfprops = data.length > 0;
 
@@ -20,12 +21,17 @@ const InfoBlock = (props) => {
 
 
     const changeRoom = (roomId) => {
+        toggleIsFetch(true);
         localStorage.setItem('roomId', roomId);
         API.setRoom(roomId);
     }
 
     const readyMountAllUsersInRoom = mapUsersAndMessagesInRoom(AllUsersInRoom);
     const readyMountAllRooms = mapUsersAndMessagesInRoom(allRooms, localStorage.getItem('roomId'), changeRoom);
+
+    if (isFetch) {
+        return <Loader />
+    }
 
     return (
         <div className='block-info'>
@@ -63,8 +69,9 @@ const InfoBlock = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        data: state.data.data
+        data: state.data.data,
+        isFetch: state.data.isFetch
     }
 };
 
-export default connect(mapStateToProps, {initRoomId})(InfoBlock)
+export default connect(mapStateToProps, {initRoomId, toggleIsFetch})(InfoBlock)
