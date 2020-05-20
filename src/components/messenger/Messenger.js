@@ -6,10 +6,11 @@ import {connect} from "react-redux";
 import {socket} from "../../api/socket";
 import {API} from "../../api/api";
 import UsersBlock from "./UsersBlock";
+import {Loader} from "../Loader";
 
 const Messenger = (props) => {
 
-    const {data, setData, toggleIsFetch} = props;
+    const {data, setData, toggleIsFetch, isFetch} = props;
     const userName = localStorage.getItem('userName');
     const roomId = localStorage.getItem('roomId');
 
@@ -36,7 +37,8 @@ const Messenger = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-    data: state.data.data
+    data: state.data.data,
+    isFetch: state.data.isFetch
 })
 
 export default connect(mapStateToProps, {setData, toggleIsFetch})(Messenger)

@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {initRoomId, toggleIsFetch} from "../../redux/ac";
 import {filterAllRoomsAndUsers, mapUsersAndMessagesInRoom, utils} from "../../utils/utils";
 import {API} from "../../api/api";
+import {Loader} from "../Loader";
 
 const InfoBlock = (props) => {
     const {data, toggleIsFetch} = props;
@@ -29,7 +30,7 @@ const InfoBlock = (props) => {
                 <span>User name: {''}</span>
                 <br/>
                 <div className='block-info__ul-all-rooms'>
-                    {readyMountAllRooms}
+                    {data.length <= 0 ? <Loader /> : readyMountAllRooms}
                 </div>
             </div>
         </div>
@@ -38,8 +39,7 @@ const InfoBlock = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        data: state.data.data,
-        isFetch: state.data.isFetch
+        data: state.data.data
     }
 };
 
