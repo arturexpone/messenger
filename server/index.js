@@ -1,40 +1,58 @@
-const checkRoom = require('./utils/checkRoom').checkRoom;
 const app = require('express')();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 const mongoose = require('./mongo/mongodb');
-const Rooms = mongoose.Rooms();
-const AllUsersName = mongoose.AllUsers();
+const AllMessages = mongoose.AllMessages();
 
 mongoose.connect();
 
+
 io.on('connection', socket => {
 
-    socket.on('set room', data => {
-        Rooms.find()
-            .then(rooms => {
-                if (!rooms.find(room => room.roomId === data)) {
-                    Rooms.create({roomId: data}).then(room => {
-                        console.log('создал новую руму в базе');
-                        return io.emit('get room', room.roomId);
-                    })
-                }
-                return [];
-            });
-    });
+    // socket.on('set room', data => {
+    //     console.log('пришел запрос')
+    //     AllMessages.find()
+    //         .then(rooms => {
+    //             AllMessages.create({roomId: data.roomId, userName: data.userName, message: data.message}).then(data => {
+    //                 return io.emit('get room', [...rooms, data])
+    //                     ;
+    //             }).catch(err => console.log(err))
+    //         }).catch(err => console.log(err));
+    // });
 
-    socket.on('get rooms', data => {
-        Rooms.find()
-            .then(rooms => {
-                return io.emit('sent all rooms', rooms);
-                    })
-            });
-
-    socket.on('get all user name', data => {
-        AllUsersName.find().then(users => {
-            socket.emit('set users name', users.map(u => u.userName));
+    // socket.on('login', data => {
+    //     AllMessages.find()
+    //         .then(arrOfData => {
+    //             return io.emit('set all data', arrOfData)
+    //         }).catch(err => console.log(err))
+    // })
+    socket.on('login', data => {
+        console.log('login')
+        AllMessages.create({roomId: data.roomId, userName: data.userName, message: ' '}).then(createData => {
+            AllMessages.find()
+                .then(arrOfData => {
+                    return io.emit('set all data', arrOfData)
+                }).catch(err => console.log(err))
         })
-    });
+    })
+
+    socket.on('set room', data => {
+        console.log('set room')
+        AllMessages.find()
+            .then(arrOfData => {
+                return io.emit('set all data', arrOfData)
+            }).catch(err => console.log(err))
+    })
+
+    socket.on('send message', data => {
+        console.log('send message')
+        AllMessages.create({roomId: data.roomId, userName: data.userName, message: data.message}).then(createData => {
+            AllMessages.find()
+                .then(arrOfData => {
+                    return io.emit('set all data', arrOfData)
+                }).catch(err => console.log(err))
+        })
+    })
 
     socket.on('disconnect', () => {
         console.log('User disconnected')
@@ -43,4 +61,5 @@ io.on('connection', socket => {
 
 
 server.listen(3001, () => {
+    console.log('Server is started')
 });
