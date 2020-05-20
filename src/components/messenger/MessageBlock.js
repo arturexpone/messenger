@@ -15,8 +15,10 @@ const MessageBlock = (props) => {
     const readyMessageDidMount = renderMessageInRoom(messagesInRoom, userName);
 
     const messageSend = () => {
+        const date = new Date();
+        const currentTime = `${date.getHours()}:${date.getMinutes()}`
         if (newMessage) {
-            API.sendMessage(roomId, userName, newMessage);
+            API.sendMessage(roomId, userName, newMessage, currentTime);
             setNewMessage('');
         }
     }

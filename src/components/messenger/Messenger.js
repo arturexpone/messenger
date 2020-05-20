@@ -7,7 +7,6 @@ import {socket} from "../../api/socket";
 import {API} from "../../api/api";
 import UsersBlock from "./UsersBlock";
 import {Redirect} from "react-router-dom";
-import {Modal} from "../Modal";
 
 const Messenger = (props) => {
 

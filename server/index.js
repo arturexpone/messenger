@@ -46,7 +46,12 @@ io.on('connection', socket => {
 
     socket.on('send message', data => {
         console.log('send message')
-        AllMessages.create({roomId: data.roomId, userName: data.userName, message: data.message}).then(createData => {
+        AllMessages.create({
+            roomId: data.roomId,
+            userName: data.userName,
+            message: data.message,
+            currentDate: data.currentDate
+        }).then(createData => {
             AllMessages.find()
                 .then(arrOfData => {
                     return io.emit('set all data', arrOfData)

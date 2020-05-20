@@ -21,6 +21,10 @@ module.exports = {
                 type: String,
                 required: false
             },
+            currentDate: {
+                type: String,
+                required: false
+            }
         });
 
         return this.mongoose.model('all-messages', allMessagesSchema);
