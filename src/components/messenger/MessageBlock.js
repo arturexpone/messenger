@@ -15,9 +15,10 @@ const MessageBlock = (props) => {
     const readyMessageDidMount = renderMessageInRoom(messagesInRoom);
 
     const messageSend = () => {
-        API.sendMessage(roomId, userName, newMessage);
-        setNewMessage('');
-
+        if (newMessage) {
+            API.sendMessage(roomId, userName, newMessage);
+            setNewMessage('');
+        }
     }
 
     const changeMessage = (message) => {
