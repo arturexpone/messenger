@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {initRoomId, toggleIsFetch} from "../../redux/ac";
-import {filterAllRoomsAndUsers, mapUsersAndMessagesInRoom, utils} from "../../utils/utils";
+import {filterAllRoomsAndUsers, mapUsersAndMessagesInRoom} from "../../utils/utils";
 import {API} from "../../api/api";
 import {Loader} from "../Loader";
 import {Modal} from "../Modal";
@@ -28,21 +28,16 @@ const InfoBlock = (props) => {
 
     return (
         <div className='block-info'>
-            Info block
-            {/*<div className='block-info__user-name'>*/}
-
+            <div>
                 <div>
-                    <span>User name: {userName}</span>
+                    <span className='block-info__user-name'>User name: {userName}</span>
                 </div>
-
 
                 <div className='block-info__ul-all-rooms'>
                     {data.length <= 0 ? <Loader /> : readyMountAllRooms}
                 </div>
-
-
+            </div>
                 <Modal/>
-            {/*</div>*/}
         </div>
     )
 }

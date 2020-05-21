@@ -17,11 +17,7 @@ const UsersBlock = (props) => {
     const readyMountAllUsersInRoom = mapUsersAndMessagesInRoom(AllUsersInRoom);
 
     return (
-        <div className='block-info'>
-            All Users In Room
-
-                <div className='block-info__ul-names-in-room'>
-
+        <div className='block-users'>
                     <div>
                         Users who participated in the conversation:
                     </div>
@@ -29,8 +25,6 @@ const UsersBlock = (props) => {
                     <div className='block-info__ul-names-in-room'>
                         {isFetch ? <Loader/> : readyMountAllUsersInRoom}
                     </div>
-
-                </div>
         </div>
     )
 }
