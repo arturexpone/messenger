@@ -51,21 +51,35 @@ export const renderMessageInRoom = (array, userName) => {
 
     return spliceStrArray.map((el, i) => (
         <div className={el.userName === userName ? 'message-model-block my-message' : 'message-model-block'}>
-            <div className='avatar'>
-                <img src="" alt=""/>
+
+            <div className='message-info-block'>
+                <div className='user-name'>
+                    <span>{el.userName}</span>
+                </div>
+                {/*<div className='time-send-message'>*/}
+                {/*    <span>{el.currentDate} AM</span>*/}
+                {/*</div>*/}
             </div>
+
+
             <div className={el.userName === userName ? 'is-my-message-block' : 'not-my-message-block'}>
                 <div className={el.userName === userName ? 'is-my-message' : 'not-my-message'}>
                     <p className='block-message__message'>{el.message}</p>
                 </div>
-                <div className='message-info-block'>
-                    <div className='user-name'>
-                        <span>{el.userName}</span>
-                    </div>
-                    <div className='time-send-message'>
-                        <span>{el.currentDate}</span>
-                    </div>
-                </div>
+
+
+
+                {/*<div className='message-info-block'>*/}
+                {/*    <div className='user-name'>*/}
+                {/*        <span>{el.userName}</span>*/}
+                {/*    </div>*/}
+                {/*    <div className='time-send-message'>*/}
+                {/*        <span>{el.currentDate}</span>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
+
+
+
             </div>
         </div>
 

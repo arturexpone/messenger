@@ -40,13 +40,32 @@ const MessageBlock = (props) => {
 
     return (
         <div className='messages-block-real'>
+
+            <div className='info-message-block'>
+                <div className='info-message-block__avatar-room'>
+                    <img src="https://genesta-store.ru/wp-content/uploads/2019/08/1200px-Telegram_2019_Logo.svg-1.png" alt=""/>
+                </div>
+                <div className='info-message-block__all-info'>
+                    <div><h4>Chat with Artur Matveev</h4></div>
+                    <div>already 1902 messages</div>
+                </div>
+            </div>
+
             <div className='mount-messages' ref={scrollRef}>
                 {isFetch ? <Loader /> : readyMessageDidMount}
             </div>
 
             <div className='messages-block-real__send-block'>
-                <input type="text" value={newMessage} onChange={(e) => changeMessage(e.currentTarget.value)}/>
-                <button onClick={messageSend}>Send message</button>
+                <div className='messages-block-real__send-block__textarea'>
+                    <textarea value={newMessage}
+                              onChange={(e) => changeMessage(e.currentTarget.value)}>
+                    </textarea>
+                </div>
+                <div className='messages-block-real__send-block__button'>
+                    <div className='messages-block-real__send-block__button-send'
+                         onClick={messageSend}
+                    >S E N D</div>
+                </div>
             </div>
             
         </div>
