@@ -6,7 +6,7 @@ const AllMessages = mongoose.AllMessages();
 
 mongoose.connect();
 
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT;
 
 io.on('connection', socket => {
 

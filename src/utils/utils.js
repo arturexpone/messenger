@@ -4,7 +4,7 @@ export const mapUsersAndMessagesInRoom = (array, roomId = null, refOnClick = nul
     let activeUsersInRoom = array.filter(el => el !== ' ');
     activeUsersInRoom = activeUsersInRoom.map((el, i) => {
         return (
-            <div onClick={refOnClick ? () => refOnClick(el) : null}
+            <div key={i} onClick={refOnClick ? () => refOnClick(el) : null}
                  className={toggle === 'rooms'
                      ? 'block-info__ui_all_rooms current-rooms'
                      : 'block-info__ui_all_rooms'}>
@@ -66,19 +66,16 @@ export const utils = (array, roomId, toggle) => {
 }
 
 export const renderMessageInRoom = (array, userName) => {
-    const spliceStrArray = array.filter(el => el.message != ' ');
+    const spliceStrArray = array.filter(el => el.message !== ' ');
 
 
     return spliceStrArray.map((el, i) => (
-        <div className={el.userName === userName ? 'message-model-block my-message' : 'message-model-block'}>
+        <div key={i} className={el.userName === userName ? 'message-model-block my-message' : 'message-model-block'}>
 
             <div className='message-info-block'>
                 <div className='user-name'>
                     <span>{el.userName}</span>
                 </div>
-                {/*<div className='time-send-message'>*/}
-                {/*    <span>{el.currentDate} AM</span>*/}
-                {/*</div>*/}
             </div>
 
 
@@ -86,84 +83,7 @@ export const renderMessageInRoom = (array, userName) => {
                 <div className={el.userName === userName ? 'is-my-message' : 'not-my-message'}>
                     <p className='block-message__message'>{el.message}</p>
                 </div>
-
-
-
-                {/*<div className='message-info-block'>*/}
-                {/*    <div className='user-name'>*/}
-                {/*        <span>{el.userName}</span>*/}
-                {/*    </div>*/}
-                {/*    <div className='time-send-message'>*/}
-                {/*        <span>{el.currentDate}</span>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
-
-
-
             </div>
         </div>
-
-
-
-
-
-
-        // <div key={i} className={el.userName === userName
-        //     ? 'block-message__block my-message'
-        //     : 'block-message__block'}>
-        // <div className='message-and-date'>
-        //         <div className='message-itself'>
-        //             <p className='block-message__message'>{el.message}</p>
-        //         </div>
-        //
-        //         <div>
-        //             <span>{el.currentDate}</span>
-        //         </div>
-        // </div>
-        //
-        //         <div>
-        //             <div className='block-message__user-name'>
-        //                 <span>{el.userName}</span>
-        //             </div>
-        //         </div>
-        // </div>
     ));
 }
-
-
-
-// <div className='message-model-block'>
-//     <div className='avatar'>
-//         <img src="" alt=""/>
-//     </div>
-//     <div className='message-block'>
-//         <div className='message'>
-//             <p className='block-message__message'>{el.message}</p>
-//         </div>
-//         <div className='message-info-block'>
-//             <div className='user-name'>
-//                 <span>{el.userName}</span>
-//             </div>
-//             <div className='time-send-message'>
-//                 <span>{el.currentDate}</span>
-//             </div>
-//         </div>
-//     </div>
-// </div>
-
-
-// .message-model-block {
-//     display: flex;
-//     flex-direction: row;
-// }
-//
-// .message-block {
-//     display: flex;
-//     flex-direction: column;
-// }
-//
-// .message-info-block {
-//     display: flex;
-//     flex-direction: row;
-// }
-//

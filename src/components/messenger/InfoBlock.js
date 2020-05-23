@@ -4,12 +4,9 @@ import {initRoomId, toggleIsFetch} from "../../redux/ac";
 import {filterAllRoomsAndUsers, mapUsersAndMessagesInRoom} from "../../utils/utils";
 import {API} from "../../api/api";
 import {Loader} from "../Loader";
-import {Modal} from "../Modal";
 
 const InfoBlock = (props) => {
     const {data, toggleIsFetch} = props;
-
-    const userName = localStorage.getItem('userName');
 
     const valueOfprops = data.length > 0;
 
