@@ -1,14 +1,30 @@
 import React from "react";
 
-export const mapUsersAndMessagesInRoom = (array, roomId = null, refOnClick = null) => {
+export const mapUsersAndMessagesInRoom = (array, roomId = null, refOnClick = null, toggle, userName) => {
     let activeUsersInRoom = array.filter(el => el !== ' ');
-    activeUsersInRoom = activeUsersInRoom.map((el, i) => (
-            <div onClick={refOnClick ? () => refOnClick(el) : null} className='block-info__ui_all_rooms'>
-                <span key={i}
-                      className={el === roomId ? 'block-room-id active' : 'block-room-id'}>
+    activeUsersInRoom = activeUsersInRoom.map((el, i) => {
+        return (
+            <div onClick={refOnClick ? () => refOnClick(el) : null}
+                 className={toggle === 'rooms'
+                     ? 'block-info__ui_all_rooms current-rooms'
+                     : 'block-info__ui_all_rooms'}>
+                <div className='block-info__room-name'>
+                    <span key={i}
+                          className={el === roomId
+                              ? 'block-room-id active'
+                              : el === userName ? 'block-room-id active-user-name'
+                                  : 'block-room-id'}>
                     {el}
-                </span>
-            </div>));
+                    </span>
+                </div>
+
+                <div>
+                    <img src="https://sun9-63.userapi.com/c852024/v852024456/17092e/HnaTBKfCVOA.jpg" alt=""/>
+                </div>
+
+
+            </div>)
+    });
     return activeUsersInRoom;
 }
 

@@ -8,13 +8,14 @@ const UsersBlock = (props) => {
 
     const valueOfprops = data.length > 0;
     const roomId = localStorage.getItem('roomId');
+    const userName = localStorage.getItem('userName')
 
     const AllUsersInRoom = valueOfprops
         ? utils(data, roomId)
         : [];
 
 
-    const readyMountAllUsersInRoom = mapUsersAndMessagesInRoom(AllUsersInRoom);
+    const readyMountAllUsersInRoom = mapUsersAndMessagesInRoom(AllUsersInRoom, null, null, null, userName);
 
     return (
         <div className='block-users'>

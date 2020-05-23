@@ -4,6 +4,7 @@ import {renderMessageInRoom, utils} from "../../utils/utils";
 import {API} from "../../api/api";
 import {setNewMessage} from "../../redux/ac";
 import {Loader} from "../Loader";
+import logo from '../../assets/logo.png'
 
 const MessageBlock = (props) => {
 
@@ -43,7 +44,7 @@ const MessageBlock = (props) => {
 
             <div className='info-message-block'>
                 <div className='info-message-block__avatar-room'>
-                    <img src="https://genesta-store.ru/wp-content/uploads/2019/08/1200px-Telegram_2019_Logo.svg-1.png" alt=""/>
+                    <img src='https://www.footbridgemedia.com/contractor-marketing-tips/wp-content/uploads/2018/01/live-chat-1.jpg' alt=""/>
                 </div>
                 <div className='info-message-block__all-info'>
                     <div><h4>Chat with Artur Matveev</h4></div>

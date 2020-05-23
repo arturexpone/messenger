@@ -24,20 +24,20 @@ const InfoBlock = (props) => {
         API.setRoom(roomId);
     }
 
-    const readyMountAllRooms = mapUsersAndMessagesInRoom(allRooms, localStorage.getItem('roomId'), changeRoom);
+    const readyMountAllRooms = mapUsersAndMessagesInRoom(allRooms, localStorage.getItem('roomId'), changeRoom, 'rooms');
 
     return (
         <div className='block-info'>
             <div>
                 <div>
-                    <span className='block-info__user-name'>User name: {userName}</span>
+                    <h4>User name: </h4>
+                    <span className='block-info__user-name'>{userName}</span>
                 </div>
 
                 <div className='block-info__ul-all-rooms'>
                     {data.length <= 0 ? <Loader /> : readyMountAllRooms}
                 </div>
             </div>
-                <Modal/>
         </div>
     )
 }
