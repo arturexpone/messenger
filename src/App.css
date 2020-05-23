@@ -200,7 +200,6 @@
 
 
 ::-webkit-scrollbar-button {
-    background-image:url('');
     background-repeat:no-repeat;
     width:5px;
     height:0px
@@ -502,7 +501,7 @@ textarea {
 }
 
 .block-room-id.active-user-name {
-    font-size: 25px;
+    font-size: 19px;
     color: #7bc4ef;
 }
 

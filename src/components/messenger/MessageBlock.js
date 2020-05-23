@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {renderMessageInRoom, utils} from "../../utils/utils";
 import {API} from "../../api/api";
@@ -25,7 +25,7 @@ const MessageBlock = (props) => {
     }
 
     const submitTextarea = (e) => {
-        if (newMessage && e.keyCode == 13 && e.shiftKey == false) {
+        if (newMessage && e.keyCode === 13 && e.shiftKey === false) {
             e.preventDefault();
             API.sendMessage(roomId, userName, newMessage);
             setNewMessage('');

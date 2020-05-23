@@ -6,6 +6,7 @@ const AllMessages = mongoose.AllMessages();
 
 mongoose.connect();
 
+const PORT = process.env.PORT;
 
 io.on('connection', socket => {
 
@@ -48,6 +49,6 @@ io.on('connection', socket => {
 });
 
 
-server.listen(3001, () => {
+server.listen(PORT, () => {
     console.log('Server is started')
 });

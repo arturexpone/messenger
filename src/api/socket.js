@@ -1,3 +1,4 @@
 import socketIO from 'socket.io-client'
 
-export const socket = socketIO('goofy-ptolemy-39a86f.netlify.app:3001');
+
+export const socket = socketIO('http://dry-mountain-25307.herokuapp.com:80');
