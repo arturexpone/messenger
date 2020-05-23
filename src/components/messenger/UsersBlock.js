@@ -20,7 +20,7 @@ const UsersBlock = (props) => {
     return (
         <div className='block-users'>
                     <div className='block-users__users'>
-                        <h4>Активные пользователи:</h4>
+                        <h4>ACTIVE USERS IN ROOM:</h4>
                     </div>
 
                     <div className='block-info__ul-names-in-room'>

@@ -24,12 +24,12 @@ const InfoBlock = (props) => {
         API.setRoom(roomId);
     }
 
-    const readyMountAllRooms = mapUsersAndMessagesInRoom(allRooms, localStorage.getItem('roomId'), changeRoom, 'rooms');
+    const readyMountAllRooms = mapUsersAndMessagesInRoom(allRooms, localStorage.getItem('roomId'), changeRoom, 'rooms', false);
 
     return (
         <div className='block-info'>
                 <div className='block-info__rooms-info'>
-                    <h4>Доступные комнаты:</h4>
+                    <h4>ROOMS:</h4>
                 </div>
 
                 <div className='block-info__ul-all-rooms'>

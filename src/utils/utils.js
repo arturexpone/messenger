@@ -19,7 +19,11 @@ export const mapUsersAndMessagesInRoom = (array, roomId = null, refOnClick = nul
                 </div>
 
                 <div>
-                    <img src="https://sun9-63.userapi.com/c852024/v852024456/17092e/HnaTBKfCVOA.jpg" alt=""/>
+                    <img
+                        src={userName
+                            ? 'https://sun9-63.userapi.com/c852024/v852024456/17092e/HnaTBKfCVOA.jpg'
+                            : 'https://valvemon.ru/templates/ru/images/no-comments.svg'
+                        }/>
                 </div>
 
 

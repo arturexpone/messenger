@@ -4,6 +4,8 @@
 .block-messenger {
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin-top: 3vw;
 }
 
 .block-message {
@@ -17,10 +19,10 @@
 .block-info {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
     width: 15vw;
     height: 40vw;
-    background-color: #434753;
+    background-color: #828282;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     font-family: 'Exo 2', sans-serif;
@@ -155,7 +157,12 @@
 }
 
 .block-info__ui_all_rooms:hover {
-    background-color: gray;
+    color: black;
+    background-color: #f1f5f8;
+}
+
+.block-info__ui_all_rooms:hover .block-room-id{
+    color: black;
 }
 
 .block-users {
@@ -164,7 +171,7 @@
     justify-content: flex-start;
     width: 15vw;
     height: 40vw;
-    background-color: #434753;
+    background-color: #828282;
     overflow: scroll;
     overflow-x: hidden;
     border-top-right-radius: 5px;
@@ -499,7 +506,65 @@ textarea {
     color: #7bc4ef;
 }
 
-
 .block-info__wrapper {
     height: 50vw;
+}
+
+.login-form-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 12vw;
+}
+
+.login-form-wrapper h1 {
+    font-family: 'Exo 2', sans-serif;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.login-form-input-id {
+    display: flex;
+    justify-content: center;
+    resize: none;
+    width: 12vw;
+    background: #f6f6f6;
+    border: 1px solid #cecece;
+    border-radius: 5px;
+    padding: 8px 0 8px 10px;
+    margin-bottom: 10px;
+}
+
+.login-form-nickname {
+    display: flex;
+    justify-content: center;
+    resize: none;
+    width: 12vw;
+    background: #f6f6f6;
+    border: 1px solid #cecece;
+    border-radius: 5px;
+    padding: 8px 0 8px 10px;
+    margin-bottom: 10px;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.login-send {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 20px;
+    cursor: default;
+    font-weight: bold;
+    color: #86c9f3;
+}
+
+.login-form__button-send-block {
+    display: flex;
+    justify-content: center;
 }

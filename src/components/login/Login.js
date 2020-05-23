@@ -15,10 +15,13 @@ const Login = (props) => {
     }
 
     return (
-        <div>
+        <div className='login-form-wrapper'>
             <h1>Login</h1>
-                <div>
+
+            <div className='login-form'>
+                <div className='login-room-id'>
                     <input name='roomId'
+                           className='login-form-input-id'
                            type='text'
                            placeholder='Enter room ID'
                            onChange={(e) => initRoomId(e.currentTarget.value)}
@@ -29,17 +32,21 @@ const Login = (props) => {
                 <div>
                     <input name='userName'
                            type='text'
+                           className='login-form-nickname'
                            placeholder='Enter your nickname'
                            onChange={(e) => initUserName(e.currentTarget.value)}
                            value={userName}
                     />
                 </div>
 
-                <div>
-                    <NavLink to='/messenger'>
-                        <button onClick={setUserAndRoom}>Send data</button>
+                <div className='login-form__button-send-block'>
+                    <NavLink to='/messenger' className='link'>
+                        <div onClick={setUserAndRoom} className='login-send'>
+                            S E N D
+                        </div>
                     </NavLink>
                 </div>
+            </div>
 
         </div>
     )

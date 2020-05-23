@@ -27,7 +27,6 @@ const Messenger = (props) => {
         })
     })
 
-    console.log('RENDER: Messenger')
 
     return (
         <div className='block-messenger'>
