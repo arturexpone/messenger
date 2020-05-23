@@ -4,7 +4,6 @@ import {renderMessageInRoom, utils} from "../../utils/utils";
 import {API} from "../../api/api";
 import {setNewMessage} from "../../redux/ac";
 import {Loader} from "../Loader";
-import logo from '../../assets/logo.png'
 
 const MessageBlock = (props) => {
 
@@ -19,10 +18,16 @@ const MessageBlock = (props) => {
 
 
     const messageSend = () => {
-        const date = new Date();
-        const currentTime = `${date.getHours()}:${date.getMinutes()}`
         if (newMessage) {
-            API.sendMessage(roomId, userName, newMessage, currentTime);
+            API.sendMessage(roomId, userName, newMessage);
+            setNewMessage('');
+        }
+    }
+
+    const submitTextarea = (e) => {
+        if (newMessage && e.keyCode == 13 && e.shiftKey == false) {
+            e.preventDefault();
+            API.sendMessage(roomId, userName, newMessage);
             setNewMessage('');
         }
     }
@@ -33,42 +38,44 @@ const MessageBlock = (props) => {
 
 
     useEffect(() => {
-            scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+        scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     })
-
-
-    console.log('render MESSAGE BLOCK')
 
     return (
         <div className='messages-block-real'>
 
             <div className='info-message-block'>
                 <div className='info-message-block__avatar-room'>
-                    <img src='https://www.footbridgemedia.com/contractor-marketing-tips/wp-content/uploads/2018/01/live-chat-1.jpg' alt=""/>
+                    <img
+                        src='https://www.footbridgemedia.com/contractor-marketing-tips/wp-content/uploads/2018/01/live-chat-1.jpg'
+                        alt=""/>
                 </div>
                 <div className='info-message-block__all-info'>
-                    <div><h4>Chat with Artur Matveev</h4></div>
-                    <div>already 1902 messages</div>
+                    <div><h4>Chat with cool people :) Creator - {messagesInRoom[0] ? messagesInRoom[0].userName : ''}</h4></div>
+                    <div>already {readyMessageDidMount.length} messages</div>
                 </div>
             </div>
 
             <div className='mount-messages' ref={scrollRef}>
-                {isFetch ? <Loader /> : readyMessageDidMount}
+                {isFetch ? <Loader/> : readyMessageDidMount}
             </div>
 
             <div className='messages-block-real__send-block'>
                 <div className='messages-block-real__send-block__textarea'>
-                    <textarea value={newMessage}
-                              onChange={(e) => changeMessage(e.currentTarget.value)}>
+                        <textarea value={newMessage}
+                                  onChange={(e) => changeMessage(e.currentTarget.value)}
+                                  onKeyDown={submitTextarea}
+                        >
                     </textarea>
                 </div>
                 <div className='messages-block-real__send-block__button'>
                     <div className='messages-block-real__send-block__button-send'
                          onClick={messageSend}
-                    >S E N D</div>
+                    >S E N D
+                    </div>
                 </div>
             </div>
-            
+
         </div>
     )
 }

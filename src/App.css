@@ -1,13 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300&display=swap');
+
+
 .block-messenger {
     display: flex;
     justify-content: center;
 }
 
 .block-message {
-    width: 600px;
+    width: 1vw;
     padding: 10px;
     margin: 10px;
-    height: 650px;
+    height: 1vw;
     border: 1px solid red;
 }
 
@@ -15,12 +18,12 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 15%;
-    padding: 10px;
-    height: 680px;
+    width: 15vw;
+    height: 40vw;
     background-color: #434753;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
+    font-family: 'Exo 2', sans-serif;
 }
 
 .block-info__user-name {
@@ -33,21 +36,28 @@
     flex-direction: column;
     padding: 10px;
     margin: 10px;
-    max-height: 550px;
+    max-height: 35vw;
     overflow: auto;
     overflow-x: hidden;
 }
 
 .block-info__ul-all-rooms {
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*max-height: 35vw;*/
+    /*width: 13vw;*/
+    /*padding: 5px;*/
+    /*margin: 10px;*/
+    /*overflow: auto;*/
+    /*overflow-x: hidden;*/
+    /*border-radius: 20px;*/
     display: flex;
     flex-direction: column;
-    height: 600px;
-    width: 90%;
     padding: 10px;
     margin: 10px;
+    max-height: 35vw;
     overflow: auto;
     overflow-x: hidden;
-    border-radius: 20px;
 }
 
 .block-info__ul-all-rooms .active {
@@ -97,7 +107,7 @@
 }
 
 .block-message__message {
-    max-width: 380px;
+    max-width: 1vw;
     padding: 15px;
     word-break: break-all;
 }
@@ -106,8 +116,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 600px;
-    height: 700px;
+    width: 30vw;
+    height: 40vw;
     background-color: #f1f5f8;
 }
 
@@ -152,14 +162,14 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 300px;
-    height: 700px;
+    width: 15vw;
+    height: 40vw;
     background-color: #434753;
     overflow: scroll;
-    overflow-y: hidden;
     overflow-x: hidden;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+    font-family: 'Exo 2', sans-serif;
 }
 
 
@@ -220,6 +230,7 @@
 }
 
 .block-room-id {
+    font-family: 'Exo 2', sans-serif;
     color: white;
 }
 
@@ -228,24 +239,38 @@
     display: flex;
     flex-direction: row;
     border-bottom: 3px solid white;
-    height: 100px;
+    height: 4vw;
+    width: 31.23vw;
 }
 
 .info-message-block__avatar-room {
-    margin: 10px;
+    margin: 0.1vw 0.1vw 0 0.1vw;
     padding: 10px;
 }
 
 .info-message-block__all-info {
     display: flex;
     flex-direction: column;
-    margin: 10px;
+    margin: 0.1vw 0.1vw 0 0.1vw;
     padding: 10px;
+    font-family: 'Exo 2', sans-serif;
+}
+
+.block-info__rooms-info h4 {
+    padding: 20px 0 15px 10px;
+    color: white;
+    border-bottom: 2px solid white;
 }
 
 h4 {
     padding: 0;
     margin: 0;
+}
+
+.block-users__users  h4 {
+    padding: 20px 0 15px 10px;
+    color: white;
+    border-bottom: 2px solid white;
 }
 
 hr {
@@ -266,8 +291,8 @@ hr {
     align-self: center;
     justify-items: center;
     justify-self: center;
-    width: 500px;
-    height: 500px;
+    width: 15vw;
+    height: 50vw;
 }
 
 
@@ -325,7 +350,8 @@ hr {
 }
 
 .user-name {
-    font-family: Georgia;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: bold;
     margin-left: 10px;
 }
 
@@ -346,6 +372,7 @@ hr {
     max-width: 380px;
     padding: 15px;
     word-break: break-all;
+    font-family: 'Exo 2', sans-serif;
 }
 
 .not-my-message-block:before {
@@ -407,10 +434,8 @@ hr {
 textarea {
     overflow: auto;
     resize: none;
-    width: 500px;
-    height: 50px;
-
-    /* = Добавим фон, рамку, отступ*/
+    width: 25vw;
+    height: 3vw;
     background: #f6f6f6;
     border: 1px solid #cecece;
     border-radius: 5px;
@@ -428,21 +453,22 @@ textarea {
 }
 
 .messages-block-real__send-block__button-send {
-    font-family: Arial;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 20px;
     cursor: default;
     font-weight: bold;
     color: #86c9f3;
 }
 
 .info-message-block__avatar-room img {
-    width: 100px;
-    height: 60px;
-    border-radius: 40px;
+    width: 5vw;
+    height: 2.5vw;
+    border-radius: 10px;
 }
 
 .block-info__ul-all-rooms img {
-    width: 50px;
-    height: 50px;
+    max-width: 50px;
+    max-height: 50px;
     border-radius: 40px;
 }
 
@@ -471,4 +497,9 @@ textarea {
 .block-room-id.active-user-name {
     font-size: 25px;
     color: #7bc4ef;
+}
+
+
+.block-info__wrapper {
+    height: 50vw;
 }

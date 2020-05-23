@@ -28,16 +28,13 @@ const InfoBlock = (props) => {
 
     return (
         <div className='block-info'>
-            <div>
-                <div>
-                    <h4>User name: </h4>
-                    <span className='block-info__user-name'>{userName}</span>
+                <div className='block-info__rooms-info'>
+                    <h4>Доступные комнаты:</h4>
                 </div>
 
                 <div className='block-info__ul-all-rooms'>
                     {data.length <= 0 ? <Loader /> : readyMountAllRooms}
                 </div>
-            </div>
         </div>
     )
 }

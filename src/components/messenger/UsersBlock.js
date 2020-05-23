@@ -19,8 +19,8 @@ const UsersBlock = (props) => {
 
     return (
         <div className='block-users'>
-                    <div>
-                        Users who participated in the conversation:
+                    <div className='block-users__users'>
+                        <h4>Активные пользователи:</h4>
                     </div>
 
                     <div className='block-info__ul-names-in-room'>
