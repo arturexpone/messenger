@@ -1,18 +1,17 @@
 import React from "react";
 import {connect} from "react-redux";
-import {initRoomId} from "../../redux/ac";
-import {filterAllRoomsAndUsers, mapUsersAndMessagesInRoom, utils} from "../../utils/utils";
+import {initRoomId, toggleIsFetch} from "../../redux/ac";
+import {filterAllRoomsAndUsers, mapUsersAndMessagesInRoom} from "../../utils/utils";
 import {API} from "../../api/api";
+import {Loader} from "../Loader";
+import {Modal} from "../Modal";
 
 const InfoBlock = (props) => {
-    const {data} = props;
+    const {data, toggleIsFetch} = props;
+
+    const userName = localStorage.getItem('userName');
 
     const valueOfprops = data.length > 0;
-
-    const AllUsersInRoom = valueOfprops
-        ? utils(data, localStorage.getItem('roomId'))
-        : [];
-
 
     const allRooms = valueOfprops
         ? filterAllRoomsAndUsers(data)
@@ -20,43 +19,22 @@ const InfoBlock = (props) => {
 
 
     const changeRoom = (roomId) => {
+        toggleIsFetch(true);
         localStorage.setItem('roomId', roomId);
         API.setRoom(roomId);
     }
 
-    const readyMountAllUsersInRoom = mapUsersAndMessagesInRoom(AllUsersInRoom);
-    const readyMountAllRooms = mapUsersAndMessagesInRoom(allRooms, localStorage.getItem('roomId'), changeRoom);
+    const readyMountAllRooms = mapUsersAndMessagesInRoom(allRooms, localStorage.getItem('roomId'), changeRoom, 'rooms', false);
 
     return (
         <div className='block-info'>
-            Info block
-            <div className='block-info__user-name'>
-                <span>User name: {''}</span>
-                <br/>
+                <div className='block-info__rooms-info'>
+                    <h4>ROOMS:</h4>
+                </div>
 
                 <div className='block-info__ul-all-rooms'>
-                    {readyMountAllRooms}
+                    {data.length <= 0 ? <Loader /> : readyMountAllRooms}
                 </div>
-
-                <br/>
-
-                <div className='block-info__ul-names-in-room'>
-
-                    <div>
-                        Users who participated in the conversation:
-                    </div>
-                    <div className='block-info__ul-names-in-room'>
-                        {readyMountAllUsersInRoom}
-                    </div>
-
-                </div>
-
-                <div>
-                </div>
-
-            </div>
-
-
         </div>
     )
 }
@@ -67,4 +45,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {initRoomId})(InfoBlock)
+export default connect(mapStateToProps, {initRoomId, toggleIsFetch})(InfoBlock)
